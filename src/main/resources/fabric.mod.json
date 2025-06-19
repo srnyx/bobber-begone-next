@@ -6,7 +6,8 @@
   "name": "Bobber Begone",
   "description": "A simple fabric client mod that removes the bobber render when hooked",
   "authors": [
-    "nu11une"
+    "nu11une",
+    "srnyx"
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/bobber-begone",
@@ -16,18 +17,13 @@
   "license": "Apache-2.0",
   "icon": "assets/bobberbegone/bobberbegone.png",
 
-  "environment": "*",
+  "environment": "client",
   "mixins": [
     "bobberbegone.mixins.json"
   ],
 
   "depends": {
     "fabricloader": ">=0.14.6",
-    "fabric": "*",
-    "minecraft": ">=1.16.5",
-    "java": ">=8"
-  },
-  "suggests": {
-    "another-mod": "*"
+    "minecraft": ">=1.21.2"
   }
 }
