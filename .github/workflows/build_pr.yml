@@ -1,8 +1,6 @@
-name: Build
+name: Build [PR]
 on:
-  push:
-    branches:
-      - main
+  pull_request:
     paths:
       - 'gradle/**'
       - 'src/**'
