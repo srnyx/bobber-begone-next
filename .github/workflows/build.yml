@@ -2,7 +2,7 @@ name: Build
 on:
   push:
     branches:
-      - main
+      - 1.21.2+
     paths:
       - 'gradle/**'
       - 'src/**'
