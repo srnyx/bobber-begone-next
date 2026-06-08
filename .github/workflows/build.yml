@@ -8,6 +8,8 @@ on:
       - 'src/**'
       - 'build.gradle.kts'
       - 'settings.gradle.kts'
+      - 'stonecutter.gradle.kts'
+      - 'stonecutter.properties.toml'
       - 'gradle.properties'
       - 'gradlew'
       - 'gradlew.bat'
@@ -17,5 +19,6 @@ jobs:
   build:
     uses: srnyx/tools/.github/workflows/build.yml@main
     with:
-      name: BobberBegone
-      java: 21
+      name: BobberBegoneNext
+      java: 25
+      task: buildAndCollect

@@ -1,0 +1,19 @@
+# Centralized Stonecutter properties
+mod.id = "bobberbegone"
+mod.name = "Bobber Begone Next"
+mod.group = "net.nu11une"
+mod.version = "1.0.0"
+
+loader.version = "0.18.0"
+loomx.loom_version = "1.17-SNAPSHOT"
+loomx.loom_remap_plugin = "fabric-loom"
+
+["1.21.2"]
+yarn_mappings = "1.21.2+build.1"
+mod.mc.compat = ">=1.21.2 <=1.21.11"
+mod.mc.releases = ["1.21.2", "1.21.3", "1.21.4", "1.21.5", "1.21.6", "1.21.7", "1.21.8", "1.21.9", "1.21.10", "1.21.11"]
+
+["26.1"]
+yarn_mappings = "26.1+build.1"
+mod.mc.compat = ">=26.1"
+mod.mc.releases = ["26.1"]
