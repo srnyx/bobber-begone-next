@@ -2,7 +2,7 @@
 mod.id = "bobberbegone"
 mod.name = "Bobber Begone Next"
 mod.group = "net.nu11une"
-mod.version = "1.0.0"
+mod.version = "1.0.1"
 
 loader.version = "0.18.0"
 loomx.loom_version = "1.17-SNAPSHOT"
