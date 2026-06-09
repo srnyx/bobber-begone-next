@@ -37,7 +37,8 @@ jobs:
         uses: "actions/upload-artifact@v4.6.2"
         with:
           name: BobberBegoneNext
-          path: ./build/libs/*.jar
+          path: |
+            ./versions/**/build/libs/*.jar
 
   distribute:
     needs: build
