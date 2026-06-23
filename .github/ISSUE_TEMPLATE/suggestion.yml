@@ -1,6 +1,5 @@
 name: 💡 Make a suggestion
 description: Suggest a change on the current behavior, a completely new feature, or something else
-type: Feature
 labels: 
   - enhancement
 body:
