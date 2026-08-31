@@ -78,7 +78,7 @@ public class ConfigScreen {
                                             BBConfig.HANDLER.save();
                                         })
                                         .controller(opt -> IntegerSliderControllerBuilder.create(opt)
-                                                .range(1, 64)
+                                                .range(1, 128)
                                                 .step(1))
                                         .build())
                                 .option(Option.<Integer>createBuilder()

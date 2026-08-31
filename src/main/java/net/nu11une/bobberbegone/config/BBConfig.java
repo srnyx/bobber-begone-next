@@ -38,10 +38,10 @@ public class BBConfig {
         public int size = 8;
 
         @SerialEntry
-        public int x = 8;
+        public int x = 12;
 
         @SerialEntry
-        public int y = -3;
+        public int y = 1;
 
 
         public void validate() {

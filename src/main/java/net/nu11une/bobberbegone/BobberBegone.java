@@ -116,9 +116,10 @@ public class BobberBegone implements ClientModInitializer {
         //?}
         if (!client.options.getCameraType().isFirstPerson()) return;
 
+        // Center x/y with size so icon's size scales nicely (doesn't move when resized)
         final int size = BBConfig.HANDLER.instance().icon.size;
-        final int x = (graphics.guiWidth() / 2) + BBConfig.HANDLER.instance().icon.x;
-        final int y = (graphics.guiHeight() / 2) + BBConfig.HANDLER.instance().icon.y;
+        final int x = ((graphics.guiWidth() - size) / 2) + BBConfig.HANDLER.instance().icon.x;
+        final int y = ((graphics.guiHeight() - size) / 2) + BBConfig.HANDLER.instance().icon.y;
         graphics.blit(
                 //? if >=1.21.6 {
                 /*RenderPipelines.GUI_TEXTURED,
