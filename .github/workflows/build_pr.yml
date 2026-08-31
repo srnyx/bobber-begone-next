@@ -4,6 +4,7 @@ on:
     paths:
       - 'gradle/**'
       - 'src/**'
+      - 'versions/**'
       - 'build.gradle.kts'
       - 'settings.gradle.kts'
       - 'stonecutter.gradle.kts'
@@ -17,6 +18,5 @@ jobs:
   build:
     uses: srnyx/tools/.github/workflows/build.yml@main
     with:
-      name: BobberBegoneNext
       java: 25
       task: buildAndCollect

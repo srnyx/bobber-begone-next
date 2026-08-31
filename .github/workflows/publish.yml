@@ -1,75 +1,15 @@
-name: Publish
+name: Build
 on:
   release:
     types:
-      - released
+      - published
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: Checkout repository
-        uses: "actions/checkout@v5.0.0"
-      - name: Set up JDK
-        uses: "actions/setup-java@v5.0.0"
-        with:
-          distribution: temurin
-          java-version: 25
-          cache: gradle
-      - name: Cache Gradle files
-        uses: "actions/cache@v4.3.0"
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper/
-          key: ${{ runner.os }}-gradle
-      - name: Setup Gradle
-        uses: "gradle/actions/setup-gradle@v5.0.0"
-        with:
-          gradle-version: "wrapper"
-      - name: Build JARs
-        uses: "Wandalen/wretry.action@master"
-        with:
-          command: "gradle buildAndCollect"
-          attempt_limit: 3
-      - name: Upload built JARs
-        uses: "actions/upload-artifact@v4.6.2"
-        with:
-          name: BobberBegoneNext
-          path: |
-            ./versions/**/build/libs/*.jar
-
-  distribute:
-    needs: build
-    runs-on: "ubuntu-latest"
-    permissions:
-      contents: write
-    strategy:
-      matrix:
-        include:
-          - branch: "1.21.2"
-            game_versions: ">=1.21.2 <=1.21.11"
-          - branch: "26.1"
-            game_versions: ">=26.1"
-    steps:
-      - name: Checkout repository
-        uses: "actions/checkout@v5.0.0"
-      - name: Download Built JARs
-        uses: "actions/download-artifact@v5.0.0"
-        with:
-          name: BobberBegoneNext
-          path: ./versions
-      - name: Publish
-        uses: "Kir-Antipov/mc-publish@v3.3.0"
-        with:
-          fail-mode: warn
-          modrinth-id: 3mdJf8V2
-          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          files: versions/${{ matrix.branch }}/build/libs/*.jar
-          version: ${{ github.ref_name }}-${{ matrix.branch }}
-          game-versions: ${{ matrix.game_versions }}
-          loaders: |
-            fabric
-            quilt
+    uses: srnyx/tools/.github/workflows/publish.yml@main
+    with:
+      java: 25
+      task: buildAndCollect publishMods
+    secrets:
+      MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}

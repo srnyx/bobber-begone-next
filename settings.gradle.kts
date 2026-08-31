@@ -1,23 +1,39 @@
-pluginManagement {
+pluginManagement { repositories {
+    maven("https://maven.kikugie.dev/releases/")
+    maven("https://maven.kikugie.dev/snapshots/")
+    maven("https://maven.fabricmc.net/")
+    maven("https://repo.srnyx.com/snapshots/")
+    gradlePluginPortal()
+} }
+
+plugins {
+    id("dev.kikugie.stonecutter") version "0.9.6"
+    id("dev.kikugie.loom-back-compat") version "0.3"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
+
+dependencyResolutionManagement {
     repositories {
         maven("https://maven.kikugie.dev/releases/")
         maven("https://maven.kikugie.dev/snapshots/")
-        maven("https://maven.fabricmc.net/")
-        gradlePluginPortal()
     }
-}
 
-plugins {
-    id("dev.kikugie.stonecutter") version "0.9.5"
-    id("dev.kikugie.loom-back-compat") version "0.3"
-    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+    versionCatalogs {
+        create("ft") { from("dev.kikugie.fletching-table:fletching-table.catalog:0.2-SNAPSHOT") }
+    }
 }
 
 rootProject.name = "BobberBegone"
 
 stonecutter {
     create(rootProject) {
-        versions("1.21.2")
-        versions("26.1")
+        versions(
+            "26.2",
+            "26.1",
+            "1.21.11",
+            "1.21.9",
+            "1.21.6",
+            "1.21.2")
+        vcsVersion = "1.21.2"
     }
 }
