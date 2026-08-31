@@ -1,7 +1,7 @@
 package net.nu11une.bobberbegone.accessor;
 
 
-public interface FishingHookRenderStateAccessor {
+public interface HookedToSelfAccessor {
 	boolean bobberBegone$hookedToSelf();
 
 	void bobberBegone$hookedToSelf(boolean value);

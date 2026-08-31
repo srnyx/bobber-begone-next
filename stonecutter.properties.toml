@@ -6,7 +6,7 @@ mod.group = "net.nu11une"
 loomx.loom_version = "1.17-SNAPSHOT"
 loomx.loom_remap_plugin = "fabric-loom"
 
-deps.loader = "0.18.0"
+deps.loader = "0.18.4"
 
 library.faststats = "0.29.4"
 
@@ -46,3 +46,10 @@ deps.minecraft.start = "1.21.2"
 deps.minecraft.end = "1.21.5"
 deps.yacl = "3.8.2+1.21.3-fabric"
 deps.modmenu = "12.0.1"
+
+["1.21"]
+deps.minecraft.start = "1.21"
+deps.minecraft.end = "1.21.1"
+deps.fabric_api = "0.102.0+1.21"
+deps.yacl = "3.5.0+1.21-fabric"
+deps.modmenu = "11.0.0"
