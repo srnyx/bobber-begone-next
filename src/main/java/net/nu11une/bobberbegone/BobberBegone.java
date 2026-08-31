@@ -71,9 +71,11 @@ public class BobberBegone implements ClientModInitializer {
         KeyBindingHelper.registerKeyBinding(toggleVisibilityKey);
         //?}
 
-        // Keybind reactions
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            // Toggle visibility
+            // Reset each tick. FishingHookRendererMixin sets it back to true AFTER if needed.
+            isHooked = false;
+
+            // Keybind: toggle visibility
             while (toggleVisibilityKey.consumeClick()) {
                 final String name = toggleVisibilityKey.getName();
                 final Long lastPress = lastKeyPresses.get(name);
