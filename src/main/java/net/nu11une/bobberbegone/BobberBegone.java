@@ -47,6 +47,7 @@ public class BobberBegone implements ClientModInitializer {
 
     public boolean isHooked = false;
 
+    @NotNull public final Stats stats = new Stats();
     @NotNull private final Map<String, Long> lastKeyPresses = new HashMap<>();
     public boolean visible = true;
 

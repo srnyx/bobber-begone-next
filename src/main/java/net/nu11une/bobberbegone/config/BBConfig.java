@@ -1,5 +1,6 @@
 package net.nu11une.bobberbegone.config;
 
+import com.google.gson.JsonObject;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
@@ -30,6 +31,14 @@ public class BBConfig {
         HANDLER.save();
     }
 
+    @NotNull
+    public JsonObject toJson() {
+        final JsonObject json = new JsonObject();
+        json.addProperty("opacity", opacity);
+        json.add("icon", icon.toJson());
+        return json;
+    }
+
     public static class Icon {
         @SerialEntry
         public boolean enabled = true;
@@ -46,6 +55,16 @@ public class BBConfig {
 
         public void validate() {
             size = Math.max(1, size);
+        }
+
+        @NotNull
+        public JsonObject toJson() {
+            final JsonObject json = new JsonObject();
+            json.addProperty("enabled", enabled);
+            json.addProperty("size", size);
+            json.addProperty("x", x);
+            json.addProperty("y", y);
+            return json;
         }
     }
 }
