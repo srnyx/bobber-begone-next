@@ -22,7 +22,7 @@ public class ConfigScreen {
     public static Screen getConfigScreen(@Nullable Screen parent) {
         return YetAnotherConfigLib.createBuilder()
                 .title(translatable("bobberbegone.config.title"))
-                .category(ConfigCategory.createBuilder().name(translatable("bobberbegone.config.general"))
+                .category(ConfigCategory.createBuilder().name(translatable("bobberbegone.config.category.general"))
                         .option(Option.<Integer>createBuilder()
                                 .name(translatable("bobberbegone.config.opacity.label"))
                                 .description(OptionDescription.createBuilder()

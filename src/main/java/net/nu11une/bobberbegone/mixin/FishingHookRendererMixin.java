@@ -1,6 +1,5 @@
 package net.nu11une.bobberbegone.mixin;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.FishingHookRenderer;
 import net.minecraft.world.entity.Entity;
@@ -28,6 +27,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 //? if >=1.21.2 && <1.21.9 {
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import org.spongepowered.asm.mixin.injection.Redirect;
+//?} else {
 //?}
 //? if >=1.21.9 {
 /*import com.llamalad7.mixinextras.injector.ModifyExpressionValue;

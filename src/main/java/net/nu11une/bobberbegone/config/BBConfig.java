@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 
 public class BBConfig {
-    @NotNull public static ConfigClassHandler<BBConfig> HANDLER = ConfigClassHandler.createBuilder(BBConfig.class)
+    @NotNull public static final ConfigClassHandler<BBConfig> HANDLER = ConfigClassHandler.createBuilder(BBConfig.class)
             .id(VersionedIdentifier.of("config"))
             .serializer(config -> GsonConfigSerializerBuilder.create(config)
                     .setPath(FabricLoader.getInstance().getConfigDir().resolve("bobberbegone.json"))
