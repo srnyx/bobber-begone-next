@@ -1,5 +1,5 @@
 # Bobber Begone Next
-Fabric client mod for 1.21.2+ that removes the bobber/fishing hook overlay when you get hooked by yourself/another player
+Fabric client mod that removes the bobber/fishing hook overlay when you get hooked by yourself/another player
 
 Also has a few more features related to the bobber:
 
