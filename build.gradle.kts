@@ -50,6 +50,7 @@ galaxy {
     repository {
         add(
             ISXANDER, GNOMECRAFT_RELEASES,
+            FASTSTATS_RELEASES, FASTSTATS_SNAPSHOTS,
             FABRIC, MAVEN_CENTRAL)
     }
 
@@ -113,6 +114,15 @@ dependencies {
     // Mods
     modImplementation("dev.isxander:yet-another-config-lib:$yaclVersion")
     modImplementation("com.terraformersmc:modmenu:$modMenuVersion")
+
+    // Library: FastStats (1.16.1-1.17.1, 1.18-1.21.8, 1.21.9-1.21.11, 26.1-26.3)
+    when {
+        sc.current.version >= "1.16.1" && sc.current.version <= "1.17.1" -> "1.16.1-1.17.1"
+        sc.current.version >= "1.18" && sc.current.version <= "1.21.8" -> "1.18-1.21.8"
+        sc.current.version >= "1.21.9" && sc.current.version <= "1.21.11" -> "1.21.9-1.21.11"
+        sc.current.version >= "26.1" && sc.current.version <= "26.3" -> "26.1-26.3"
+        else -> null
+    }?.let { jijLibrary("dev.faststats.metrics:fabric:${property("library.faststats")}+mc$it") }
 }
 
 base.archivesName = modId
@@ -186,4 +196,10 @@ if (sc.current.isActive) {
         // Run mod
         dependsOn(tasks.named("runClient"))
     }
+}
+
+// Custom jijLibrary (modImplementation + include) dependency configurations
+fun DependencyHandler.jijLibrary(dependency: String) {
+    modImplementation(dependency)
+    include(dependency)
 }
