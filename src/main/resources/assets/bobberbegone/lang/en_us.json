@@ -1,0 +1,64 @@
+{
+  "key": {
+    "category": {
+      "bobberbegone": {
+        "main": "Bobber Begone"
+      }
+    },
+
+    "bobberbegone": {
+      "toggle_visibility": "Toggle Bobber Overlay"
+    }
+  },
+
+  "bobberbegone": {
+    "toggle_visibility": {
+      "visible": "Bobber overlay is now visible",
+      "invisible": "Bobber overlay is now invisible"
+    },
+
+    "config": {
+      "title": "Bobber Begone Config",
+
+      "category": {
+        "general": "General"
+      },
+
+      "opacity": {
+        "label": "Opacity",
+        "description": "The opacity of the bobber overlay when hooked. 0 = invisible, 100 = opaque.",
+
+        "value": "%s",
+        "invisible": "Invisible",
+        "opaque": "Opaque"
+      },
+
+      "icon": {
+        "group": {
+          "label": "Icon",
+          "description": "Settings for the icon that appears when you're hooked"
+        },
+
+        "show": {
+          "label": "Eanbled",
+          "description": "Whether to show the icon"
+        },
+
+        "size": {
+          "label": "Size",
+          "description": "The size of the icon in pixels"
+        },
+
+        "x": {
+          "label": "X Offset",
+          "description": "The X offset from the center of the screen (crosshair) in pixels (positive = right)"
+        },
+
+        "y": {
+          "label": "Y Offset",
+          "description": "The Y offset from the center of the screen (crosshair) in pixels (positive = down)"
+        }
+      }
+    }
+  }
+}
