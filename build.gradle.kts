@@ -70,11 +70,15 @@ galaxy {
             "deps_modmenu" to modMenuVersion))
 
         platformPublishing {
-            dryRun = true
+            minecraftVersionStart = mcVersionStart
+            minecraftVersionEnd = mcVersionEnd
+            apiTiers.addAll(FABRIC, QUILT)
+            addAnnoyingApiDependency = false
+
+            val mainFile = loomx.modJar.flatMap { it.archiveFile }
             modrinth("3mdJf8V2") {
-                file = loomx.modJar
-                    .flatMap { it.archiveFile }
-                    .map { it.asFile }
+                file = mainFile
+                environment = CLIENT_ONLY
 
                 // Fabric API
                 fabricApiVersion?.let { requires {
@@ -92,11 +96,17 @@ galaxy {
                     version = modMenuVersion
                 }
             }
+            curseforge("1678228") {
+                file = mainFile
+                client = true
 
-            minecraftVersionStart = mcVersionStart
-            minecraftVersionEnd = mcVersionEnd
-            apiTiers.addAll(FABRIC, QUILT)
-            addAnnoyingApiDependency = false
+                // Fabric API
+                fabricApiVersion?.let { requires { slug = "fabric-api" } }
+                // YetAnotherConfigLib (YACL)
+                requires { slug = "yacl" }
+                // Mod Menu
+                optional { slug = "modmenu" }
+            }
         }
     }
 }
