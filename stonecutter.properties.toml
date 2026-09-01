@@ -53,3 +53,17 @@ deps.minecraft.end = "1.21.1"
 deps.fabric_api = "0.102.0+1.21"
 deps.yacl = "3.5.0+1.21-fabric"
 deps.modmenu = "11.0.0"
+
+["1.20.5"]
+deps.minecraft.start = "1.20.5"
+deps.minecraft.end = "1.20.6"
+deps.fabric_api = "0.97.5+1.20.5"
+deps.yacl = "3.4.2+1.20.5-fabric"
+deps.modmenu = "10.0.0"
+
+["1.20"]
+deps.minecraft.start = "1.20"
+deps.minecraft.end = "1.20.4"
+deps.fabric_api = "0.83.0+1.20"
+deps.yacl = "3.2.2+1.20"
+deps.modmenu = "7.0.0"

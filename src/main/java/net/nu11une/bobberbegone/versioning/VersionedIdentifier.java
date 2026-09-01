@@ -15,12 +15,12 @@ public class VersionedIdentifier {
         return Identifier.fromNamespaceAndPath(namespace, path);
     *///?} else {
     public static ResourceLocation of(@NotNull String namespace, @NotNull String path) {
-        //? if >1.20.4 {
+        //? if >1.20.5 {
         return ResourceLocation.fromNamespaceAndPath(namespace, path);
         //?} else {
         /*return new ResourceLocation(namespace, path);
         *///?}
-        //?}
+    //?}
     }
 
     @NotNull

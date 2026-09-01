@@ -168,6 +168,7 @@ public class FishingHookRendererMixin {
 	}
 	*///?}
 
+	//? if >=1.21 {
 	@ModifyArg(
 			method = "vertex(Lcom/mojang/blaze3d/vertex/VertexConsumer;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;IFIII)V",
 			at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/VertexConsumer;setColor(I)Lcom/mojang/blaze3d/vertex/VertexConsumer;"),
@@ -177,4 +178,18 @@ public class FishingHookRendererMixin {
 		final int alpha = Math.round(BBConfig.HANDLER.instance().opacity / 100f * 255f);
 		return (alpha << 24) | (color & 0x00FFFFFF);
 	}
+	//?} else {
+	/*@ModifyArg(
+			//? if >=1.20.5 {
+			method = "vertex(Lcom/mojang/blaze3d/vertex/VertexConsumer;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;IFIII)V",
+			//?} else {
+			/^method = "vertex(Lcom/mojang/blaze3d/vertex/VertexConsumer;Lorg/joml/Matrix4f;Lorg/joml/Matrix3f;IFIII)V",
+			^///?}
+			at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/VertexConsumer;color(IIII)Lcom/mojang/blaze3d/vertex/VertexConsumer;"),
+			index = 3)
+	private static int bobberBegone$bobberAlpha(int alpha) {
+		if (!bobberBegone$hookedToSelf) return alpha;
+		return Math.round(BBConfig.HANDLER.instance().opacity / 100f * 255f);
+	}
+	*///?}
 }
