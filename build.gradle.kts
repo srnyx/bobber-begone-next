@@ -88,7 +88,11 @@ galaxy {
                 // YetAnotherConfigLib (YACL)
                 requires {
                     id = "1eAoo2KR"
-                    version = yaclVersion
+                    version = if (hasProperty("deps.yacl_modrinth")) {
+                        property("deps.yacl_modrinth").toString()
+                    } else {
+                        yaclVersion
+                    }
                 }
                 // Mod Menu
                 optional {
