@@ -12,12 +12,15 @@ import net.nu11une.bobberbegone.config.BBConfig;
 import net.nu11une.bobberbegone.versioning.VersionedIdentifier;
 import org.jetbrains.annotations.NotNull;
 //? if >=1.21.6 {
+//import net.minecraft.client.renderer.RenderPipelines;
+//?} else if >=1.21.2 {
+import net.minecraft.client.renderer.RenderType;
+//?}
+//? if >=1.21.6 {
 /*import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
-import net.minecraft.client.renderer.RenderPipelines;
 *///?} else {
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.minecraft.client.renderer.RenderType;
 //?}
 //? if >=26.1 {
 /*import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
@@ -126,7 +129,7 @@ public class BobberBegone implements ClientModInitializer {
         graphics.blit(
                 //? if >=1.21.6 {
                 /*RenderPipelines.GUI_TEXTURED,
-                *///?} else {
+                *///?} else if >=1.21.2 {
                 RenderType::guiTextured,
                 //?}
                 VersionedIdentifier.of("textures/gui/bobber_icon.png"),

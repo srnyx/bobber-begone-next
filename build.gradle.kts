@@ -112,16 +112,25 @@ dependencies {
     fabricApiVersion?.let { modImplementation("net.fabricmc.fabric-api:fabric-api:$it") }
 
     // Mods
-    modImplementation("dev.isxander:yet-another-config-lib:$yaclVersion")
+    when {
+        sc.current.parsed >= "1.20.5" -> "dev.isxander:yet-another-config-lib"
+        else -> "dev.isxander.yacl:yet-another-config-lib-fabric"
+    }.let { modImplementation("$it:$yaclVersion") {
+        exclude(group = "com.twelvemonkeys.imageio")
+        exclude(group = "com.twelvemonkeys.common")
+    } }
     modImplementation("com.terraformersmc:modmenu:$modMenuVersion")
 
     // Library: FastStats (1.16.1-1.17.1, 1.18-1.21.8, 1.21.9-1.21.11, 26.1-26.3)
     when {
-        sc.current.version >= "1.16.1" && sc.current.version <= "1.17.1" -> "1.16.1-1.17.1"
-        sc.current.version >= "1.18" && sc.current.version <= "1.21.8" -> "1.18-1.21.8"
-        sc.current.version >= "1.21.9" && sc.current.version <= "1.21.11" -> "1.21.9-1.21.11"
-        sc.current.version >= "26.1" && sc.current.version <= "26.3" -> "26.1-26.3"
-        else -> null
+        sc.current.parsed >= "1.16.1" && sc.current.parsed <= "1.17.1" -> "1.16.1-1.17.1"
+        sc.current.parsed >= "1.18" && sc.current.parsed <= "1.21.8" -> "1.18-1.21.8"
+        sc.current.parsed >= "1.21.9" && sc.current.parsed <= "1.21.11" -> "1.21.9-1.21.11"
+        sc.current.parsed >= "26.1" && sc.current.parsed <= "26.3" -> "26.1-26.3"
+        else -> {
+            logger.warn("Unsupported Minecraft version for FastStats: ${sc.current.version}")
+            null
+        }
     }?.let { jijLibrary("dev.faststats.metrics:fabric:${property("library.faststats")}+mc$it") }
 }
 
