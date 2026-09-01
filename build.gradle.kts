@@ -115,12 +115,10 @@ dependencies {
     when {
         sc.current.parsed >= "1.20.5" -> "dev.isxander:yet-another-config-lib"
         else -> "dev.isxander.yacl:yet-another-config-lib-fabric"
-    }.let {
-        modImplementation("$it:$yaclVersion") {
-            exclude(group = "com.twelvemonkeys.imageio")
-            exclude(group = "com.twelvemonkeys.common")
-        }
-    }
+    }.let { modImplementation("$it:$yaclVersion") {
+        exclude(group = "com.twelvemonkeys.imageio")
+        exclude(group = "com.twelvemonkeys.common")
+    } }
     modImplementation("com.terraformersmc:modmenu:$modMenuVersion")
 
     // Library: FastStats (1.16.1-1.17.1, 1.18-1.21.8, 1.21.9-1.21.11, 26.1-26.3)
