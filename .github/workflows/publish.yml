@@ -11,5 +11,4 @@ jobs:
     with:
       java: 25
       task: buildAndCollect publishMods
-    secrets:
-      MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+    secrets: inherit
