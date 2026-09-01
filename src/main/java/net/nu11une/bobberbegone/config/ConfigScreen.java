@@ -10,6 +10,7 @@ import dev.isxander.yacl3.api.controller.IntegerFieldControllerBuilder;
 import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.nu11une.bobberbegone.BobberBegone;
 import net.nu11une.bobberbegone.versioning.VersionedIdentifier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -32,6 +33,8 @@ public class ConfigScreen {
                                 .binding(BBConfig.HANDLER.defaults().opacity, () -> BBConfig.HANDLER.instance().opacity, newValue -> {
                                     BBConfig.HANDLER.instance().opacity = newValue;
                                     BBConfig.HANDLER.save();
+
+                                    BobberBegone.MOD.visibility.resync();
                                 })
                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt)
                                         .range(0, 100)

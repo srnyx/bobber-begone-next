@@ -51,8 +51,8 @@ public class BobberBegone implements ClientModInitializer {
     public boolean isHooked = false;
 
     @NotNull public final Stats stats = new Stats();
+    @NotNull public final BobberVisibility visibility = new BobberVisibility();
     @NotNull private final Map<String, Long> lastKeyPresses = new HashMap<>();
-    public boolean visible = true;
 
     public BobberBegone() {
         MOD = this;
@@ -86,10 +86,11 @@ public class BobberBegone implements ClientModInitializer {
                 if (lastPress != null && System.currentTimeMillis() - lastPress < KEY_COOLDOWN.toMillis()) continue;
                 lastKeyPresses.put(name, System.currentTimeMillis());
 
-                visible = !visible;
+                visibility.toggle();
                 if (client.player != null) {
-                    final Component message = translatable("bobberbegone.toggle_visibility." + (visible ? "visible" : "invisible"))
-                            .withStyle(visible ? ChatFormatting.GREEN : ChatFormatting.RED);
+                    final boolean isVisible = visibility.isVisible();
+                    final Component message = translatable("bobberbegone.toggle_visibility." + (isVisible ? "visible" : "invisible"))
+                            .withStyle(isVisible ? ChatFormatting.GREEN : ChatFormatting.RED);
                     //? if >=26.1 {
                     /*client.player.sendOverlayMessage(message);
                     *///?} else {

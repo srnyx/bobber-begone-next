@@ -6,10 +6,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.nu11une.bobberbegone.BobberBegone;
 import net.nu11une.bobberbegone.accessor.HookedToSelfAccessor;
-import net.nu11une.bobberbegone.config.BBConfig;
 import net.nu11une.bobberbegone.versioning.VersionedIdentifier;
 import org.jetbrains.annotations.NotNull;
-import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,7 +17,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 //? if >=1.21.2 {
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.state.FishingHookRenderState;
-import net.nu11une.bobberbegone.accessor.HookedToSelfAccessor;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 //?} else {
 /*import com.mojang.blaze3d.vertex.PoseStack;
@@ -28,6 +25,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import org.spongepowered.asm.mixin.injection.Redirect;
 //?} else {
+//import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+//import org.objectweb.asm.Opcodes;
 //?}
 //? if >=1.21.9 {
 /*import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
@@ -74,7 +73,7 @@ public class FishingHookRendererMixin {
 		if (hookedIn == null || hookedIn != Minecraft.getInstance().player) return;
 		BobberBegone.MOD.isHooked = true;
 
-		if (!BobberBegone.MOD.visible || BBConfig.HANDLER.instance().opacity <= 0) cir.setReturnValue(false);
+		if (!BobberBegone.MOD.visibility.isVisible()) cir.setReturnValue(false);
 	}
 
 	@Inject(
@@ -98,7 +97,7 @@ public class FishingHookRendererMixin {
 		((HookedToSelfAccessor) fishingHook).bobberBegone$hookedToSelf(true);
 		bobberBegone$hookedToSelf = true;
 
-		if (!BobberBegone.MOD.visible || BBConfig.HANDLER.instance().opacity <= 0) ci.cancel();
+		if (!BobberBegone.MOD.visibility.isVisible()) ci.cancel();
 	}
 	*///?}
 
@@ -118,7 +117,7 @@ public class FishingHookRendererMixin {
 					opcode = Opcodes.GETSTATIC))
 	private RenderType bobberBegone$swapRenderType(RenderType original, FishingHookRenderState state) {
 		if (!((HookedToSelfAccessor) state).bobberBegone$hookedToSelf()) return original;
-		return BBConfig.HANDLER.instance().opacity < 100 ? bobberBegone$TRANSLUCENT : original;
+		return BobberBegone.MOD.visibility.effectiveOpacity() < 100 ? bobberBegone$TRANSLUCENT : original;
 	}
 
 	// For bobberBegone$bobberAlpha
@@ -154,7 +153,7 @@ public class FishingHookRendererMixin {
 	private VertexConsumer bobberBegone$translucentBuffer(@NotNull MultiBufferSource source, RenderType original) {
 		if (!bobberBegone$hookedToSelf) return source.getBuffer(original);
 
-		return source.getBuffer(BBConfig.HANDLER.instance().opacity < 100 ? bobberBegone$TRANSLUCENT : original);
+		return source.getBuffer(BobberBegone.MOD.visibility.effectiveOpacity() < 100 ? bobberBegone$TRANSLUCENT : original);
 	}
 	//?} else {
 	/*@ModifyExpressionValue(
@@ -164,7 +163,7 @@ public class FishingHookRendererMixin {
 					opcode = Opcodes.GETSTATIC))
 	private RenderType bobberBegone$swapRenderType(RenderType original, FishingHook fishingHook) {
 		if (!((HookedToSelfAccessor) fishingHook).bobberBegone$hookedToSelf()) return original;
-		return BBConfig.HANDLER.instance().opacity < 100 ? bobberBegone$TRANSLUCENT : original;
+		return BobberBegone.MOD.visibility.effectiveOpacity() < 100 ? bobberBegone$TRANSLUCENT : original;
 	}
 	*///?}
 
@@ -175,7 +174,7 @@ public class FishingHookRendererMixin {
 			index = 0)
 	private static int bobberBegone$bobberAlpha(int color) {
 		if (!bobberBegone$hookedToSelf) return color;
-		final int alpha = Math.round(BBConfig.HANDLER.instance().opacity / 100f * 255f);
+		final int alpha = Math.round(BobberBegone.MOD.visibility.effectiveOpacity() / 100f * 255f);
 		return (alpha << 24) | (color & 0x00FFFFFF);
 	}
 	//?} else {
@@ -189,7 +188,7 @@ public class FishingHookRendererMixin {
 			index = 3)
 	private static int bobberBegone$bobberAlpha(int alpha) {
 		if (!bobberBegone$hookedToSelf) return alpha;
-		return Math.round(BBConfig.HANDLER.instance().opacity / 100f * 255f);
+		return Math.round(BobberBegone.MOD.visibility.effectiveOpacity() / 100f * 255f);
 	}
 	*///?}
 }
